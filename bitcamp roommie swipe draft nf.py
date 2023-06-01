@@ -1,11 +1,5 @@
-#1. User registration and login
-#2. Search for roommates based on gender, race, and hobbies
-#3. Search for off-campus housing based on location, price range, and other criteria
-#4. Gamified questions to help match users with compatible roommates
-#5. Messaging system for communication between potential roommates
-#6. Reviews and ratings system for housing and roommates
-
-#-> build 3d button that says find my roomnie 
+# draft
+#-> =says find my roomnie 
 #-> user find their location 
 #-> user fill out questions ( their info)
 
@@ -39,12 +33,12 @@ class SwipeScreen(BoxLayout):
         self.add_widget(Image(source=self.images[self.current_image_index]))
         self.add_widget(self.swipe_button)
 
-# Retrieve public real estate data
+# get public real estate data
 response = requests.get('https://sdat.dat.maryland.gov/RealProperty/Pages/default.aspx')
 
 database = response.json()
 
-# Display the data to the user
+# Display data
 for property in database:
     print(f"Property ID: {property['id']}")
     print(f"Address: {property['address']}")
@@ -52,14 +46,14 @@ for property in database:
     print(f"Description: {property['description']}")
     print("--------------")
     
-# Ask the user to select a property
+# select one on the website
 selected_property = input("Please enter the ID of the property you want to rent out: ")
 
-# Retrieve the details of the selected property
+# get it again
 response = requests.get(f'https://sdat.dat.maryland.gov/RealProperty/Pages/default.aspx{selected_property}')
 property_details = response.json()
 
-# Display the details to the user
+# Display again
 print(f"Property ID: {property_details['id']}")
 print(f"Address: {property_details['address']}")
 print(f"Price: {property_details['price']}")
@@ -81,7 +75,7 @@ house_icon.pack(side="top", pady=10)
 circle_coords = [(100, 100), (100, 180), (100, 260), (100, 340), (100, 420)]
 line_coords = [(120, 120), (120, 160), (120, 200), (120, 240), (120, 280), (120, 320), (120, 360), (120, 400)]
 numbers = ["1", "2", "3", "4", "5"]
-#change later to customized each 
+#change later to make each circle looks good
 for i in range(5):
     x, y = circle_coords[i]
     timeline_canvas.create_oval(x-20, y-20, x+20, y+20, fill="lightblue", outline="black")
@@ -91,26 +85,26 @@ for i in range(5):
 def login_form():
 
     login_window = tk.Toplevel(root)
-    # Set the title of the window
+  
     login_window.title("Log In")
 
-    # Create a label for the username field
+    
     username_label = tk.Label(login_window, text="Username")
     username_label.pack()
 
-    # Create an entry field for the username
+   
     username_entry = tk.Entry(login_window)
     username_entry.pack()
 
-    # Create a label for the password field
+    
     password_label = tk.Label(login_window, text="Password")
     password_label.pack()
 
-    # Create an entry field for the password
+    
     password_entry = tk.Entry(login_window, show="*")
     password_entry.pack()
 
-    # Create a button to submit the form
+    
     submit_button = tk.Button(login_window, text="Log In")
     submit_button.pack()
 
@@ -120,34 +114,32 @@ login_button.pack()
 
 def signup_form():
     signup_window = tk.Toplevel(root)
-    # Set the title of the window
+    
     signup_window.title("Sign Up")
 
-    # Create a label for the name field
+    
     name_label = tk.Label(signup_window, text="Name")
     name_label.pack()
 
-    # Create an entry field for the name
     name_entry = tk.Entry(signup_window)
     name_entry.pack()
 
-    # Create a label for the email field
+    
     email_label = tk.Label(signup_window, text="Email")
     email_label.pack()
 
-    # Create an entry field for the email
+   
     email_entry = tk.Entry(signup_window)
     email_entry.pack()
 
-    # Create a label for the password field
+    
     password_label = tk.Label(signup_window, text="Password")
     password_label.pack()
 
-    # Create an entry field for the password
+   
     password_entry = tk.Entry(signup_window, show="*")
     password_entry.pack()
 
-    # Create a button to submit the form
     submit_button = tk.Button(signup_window, text="Sign Up")
     submit_button.pack()
 
@@ -190,38 +182,3 @@ if __name__ =="__main__":
     main()
 
 root.mainloop()
-
-
-# login_page = tk.Tk()
-# login_page.title("Log In")
-# login_page.geometry("300x200")
-# login_page.configure(bg= "violet")
-
-
-
-# def get_location():
-#     location = input("Where would you like to live? ")
-#     return location
-
-# login_button = tk.Button(login_page, text = "Log In", bg = "white", command = get_location)
-# login_button.pack(pady = 20)
-
-# def search_housing(location):
-#     response = requests.get(f"https://api.realestate.com/search?location={location}")
-#     results = json.loads(response.text)
-# print("Here are some available properties:")
-
-# for property in results["properties"]:
-#     print(f"- {property['address']} ({property['price']})")
-
-# def main():
-#     location = get_location()
-#     search_housing(location)
-
-# if __name__ == "main":
-#     main()
-
-
-
-
-
